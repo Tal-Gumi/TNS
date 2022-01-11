@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+*, ::before, ::after { box-sizing: border-box; }
+
+hr {
+  border:none;
+  background:#E0E4CC;
+  height:1px;
+
+}
+.container {
+  width:85%;
+  margin:auto;
+  background:#FFF; 
+  border: 2px solid #ff9966;
+
+}
+.productcont {
+  display: flex; 
+  justify-content: space-evenly;
+}
+
+
+.product {
+  padding:1%; 
+  border:1px solid #E0E4CC; 
+  margin:2px; 
+  border-radius:5px;
+  text-align:center;
+  width: 24%;
+}
+.cart-container {
+  border:1px solid #E0E4CC;
+  border-radius:5px;
+  margin-top:1em;
+  padding:1em;
+
+}
+button, input[type="submit"] { 
+    border:1px solid #ff9966; 
+    color:#fff; 
+    background: #ff9966; 
+    padding:0.6em 1em;
+    line-height:1; 
+    border-radius: 1.2em;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+button:hover, button:focus, button:active, input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active {
+    background: #A7DBD8;
+    border-color:#69D2E7;
+    color:#000;
+    cursor: pointer;
+}
+table {
+  margin-bottom:1em;
+  border-collapse:collapse;
+}
+table td, table th {
+  text-align:left;
+  padding:0.25em 1em;
+  border-bottom:1px solid #E0E4CC;
+}
+#carttotals {
+  margin-right:0;
+  margin-left:auto;
+}
+.cart-buttons {
+  width:auto;
+  margin-right:0;
+  margin-left:auto;
+  display:flex;
+  justify-content:flex-end;
+  padding:1em 0;
+}
+#emptycart {
+  margin-right:1em;
+}
+table td:nth-last-child(1) {
+  text-align:right;
+}
+.message {
+  border-width: 1px 0px;
+  border-style:solid;
+  border-color:#A7DBD8;
+  color:#679996;
+  padding:0.5em 0;
+  margin:1em 0;
+}
+.goom {
+    text-align: center;
+    color: black;
+    font-size: 1.2vw;
+    background-color: white;
+    width: 160px;
+    height: 150px;
+    padding-bottom: 3%;
+    margin-bottom: 3%;
+    cursor: pointer;
+  }
+  .goom22 {
+    text-align: center;
+    color: black;
+    font-size: 1.2vw;
+    background-color: white;
+    width: 100px;
+    height: 80px;
+    padding-bottom: 3%;
+    margin-bottom: 3%;
+    cursor: pointer;
+  }
+  @media (max-width: 1000px) {
+    .goom { width: 120px; height: 100px;}
+
+  }
+
+  @media (max-width: 991px) {
+    .container {width: 100%;}
+
+  }
+
+    @media (max-width: 800px) {
+      .goom { width: 100px; height: 80px;}
+    .des{display: none;}
+  }
+
+  @media (max-width: 600px) {
+    .goom { width: 80px; height: 60px;}
+    .productname,.price,.item-stock,.des{display: none;}
+  }

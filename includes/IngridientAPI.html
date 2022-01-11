@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="../css/phpStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/api.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<script src="https://kit.fontawesome.com/f02a42901d.js" crossorigin="anonymous"></script>
+    <script src="../js/js.js"> </script>
+	<title>API</title>
+
+	
+<script>
+	function myFunctionT(){
+        //enter the user's input to var
+	var quantity = document.getElementById('quantity').value;
+    var measure = document.getElementById('measure').value;
+    var food = document.getElementById('food').value;
+        
+        if(quantity=="" | food==""){
+            $('#oDiv').empty();
+            $('#oDiv').append("you miss some deatails..<br>please enter all three deatails!");
+        }
+        else{
+	    console.log(quantity);
+	    console.log(measure);
+        console.log(food);   
+	   $.getJSON(
+		  "https://api.edamam.com/api/nutrition-data?app_id=3af8a33f&app_key=889a365466db413e240086579f0438a0&ingr="+quantity+"%20"+measure+"%20"+food,
+		  function(data){
+			console.log(data);
+			
+            $('#oDiv').empty();
+            var arr=["label", "quantity", "unit"];
+            var oDiv = document.getElementById("oDiv"),
+            oTable = document.createElement("TABLE"),
+            oTHead = document.createElement("THEAD"),
+            oTBody = document.createElement("TBODY"),oTH, oTD, oTR;
+            
+            //up table header
+            oTR = document.createElement("TR");
+            oTH = document.createElement("TH");
+            var att1 = document.createAttribute("id");
+            var att2 = document.createAttribute("colspan");
+            att1.value = "header";
+            att2.value = "3";
+            oTH.setAttributeNode(att1);
+            oTH.setAttributeNode(att2);
+            oTH.innerHTML = "Nutritional values:";
+            oTR.appendChild(oTH);
+            oTHead.appendChild(oTR);
+            oTable.appendChild(oTHead);
+            
+            //under - up table header
+            oTR = document.createElement("TR");
+            oTH = document.createElement("TH");
+            var att1 = document.createAttribute("id");
+            var att2 = document.createAttribute("colspan");
+            att1.value = "miniHeader";
+            att2.value = "3";
+            oTH.setAttributeNode(att1);
+            oTH.setAttributeNode(att2);
+            oTH.innerHTML = "for "+quantity+" "+measure+" "+food+"<br>";
+            oTR.appendChild(oTH);
+            oTHead.appendChild(oTR);
+            oTable.appendChild(oTHead);
+            
+            //table header
+            oTR = document.createElement("TR");
+            for (i=0;i<arr.length;i++){
+                oTH = document.createElement("TH");
+                oTH.innerHTML = arr[i];
+                oTR.appendChild(oTH);
+            }
+            oTHead.appendChild(oTR);
+            oTable.appendChild(oTHead);
+            
+            //inside table
+            for (x in data["totalNutrients"]) {
+                oTR = document.createElement("TR");
+                for (i=0;i<arr.length;i++){
+                    oTD = document.createElement("TD");
+                    if (arr[i]==quantity){
+                        oTD.innerHTML = data["totalNutrients"][x][arr[i]].toFixed(3);
+                    }
+                    else{
+                         oTD.innerHTML = data["totalNutrients"][x][arr[i]];
+                    }                    oTR.appendChild(oTD);
+                }
+                oTBody.appendChild(oTR);
+            }
+            oTable.appendChild(oTBody);
+            oDiv.appendChild(oTable);
+            
+            
+		}
+        
+     )}
+    }
+</script>
+
+</head>
+
+    
+<body>
+    <header id="MYheader"></header>
+    <script>  $( "#MYheader" ).load( "headerFooter.php #MYheader" ); </script>
+    
+    <nav id="MYnav"></nav>
+    <script>  $( "#MYnav" ).load( "headerFooter.php #MYnav");  </script>
+
+<main class="bodyPage D pL"> 
+    <h4 class="hhh">Nutrition Analysis</h4>
+    <p class="exp">Please enter the quantity of the ingredient: 
+     <br><br> <input type="number" id="quantity" placeholder="0" step="0.1" value="" > </p>
+
+    <br><p class="exp">Please enter the measure of the ingredient:
+    <br><br><select id="measure" name="measure" >
+        <option value="gram">gram</option>
+        <option value="pound">pound</option>
+        <option value="kilogram">kilogram</option>
+        <option value="gallon">gallon</option>
+        <option value="milliliter">milliliter</option>
+        <option value="cup">cup</option>
+        <option value="tablespoon">tablespoon</option>
+        <option value="teaspoon">teaspoon</option>
+    </select></p>
+    
+    <br><p class="exp">Please enter the name of the ingredient:
+      <br><br><input type="text" id="food" name="food" value=""></p>
+	<br>
+	<button class="btnn" onclick="myFunctionT()">Analyze the ingredient</button>
+	<br>
+	<br>
+	 <div class="food-continer">
+    </div>
+    <div id=oDiv></div>
+</main>
+
+<footer id="MYfooter"></footer>
+<script>  $( "#MYfooter" ).load( "headerFooter.php #MYfooter" );  </script>
+</body>
+
+</html>
+
+

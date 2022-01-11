@@ -1,0 +1,49 @@
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 5px 20px 15px 20px;
+  
+  }
+  
+  .mycontainer {
+    background-color: white;
+    padding: 5px 20px 15px 20px;
+    margin-bottom:20px;
+    }
+  
+
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    padding-left: 1px;
+    padding-right: 1px;
+    font-size: 24px;
+    background-color:white;
+    display:inline;
+  }
+  
+  hr {
+    border: 1px solid lightgrey;
+  }
+  
+  span.price {
+    float: right;
+    color: black;
+  }
+    
+  input[type=text] {
+    width: 60%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+    
